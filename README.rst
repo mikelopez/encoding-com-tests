@@ -1,4 +1,11 @@
-Readme for encoding-com-tests
-------------------------------
+Testing with the encoding.com and vidly.com API
 
-``from APP-NAME import *``
+Encoding.com
+- Test connectivity
+- Test creating a job
+- Test listing media
+
+Vidly.com
+- Test connectivity
+- Test Media listing
+
