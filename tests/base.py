@@ -1,6 +1,6 @@
 import sys
 sys.path.append('..')
-from xmldict import *
+from xmltodict import *
 from termprint import *
 import simplejson
 import os
