@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../')
 from base import *
 from xml_request import *
 
