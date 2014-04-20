@@ -25,18 +25,15 @@ class TestEncodingConnection(BaseTest):
 		print "%s%s" % (self.url, d)
 		
 		headers = {'content-type': 'application/x-www-form-urlencoded'}
-		r = requests.post(self.url, headers=headers)
-		print r.text
+		params = urllib.urlencode({'json': json.dumps(data)})
+		path = ''
+	        conn = httplib.HTTPConnection(self.url)
+	        conn.request(method, path, params, headers)
+	        response = conn.getresponse()
+	        response_data = response.read()
+	        conn.close()
+	        print response_data
 
-		params = urllib.urlencode({'xml':etree.tostring(xml)})
-
-        conn = httplib.HTTPConnection(self.url)
-        conn.request(method, path, params, headers)
-        response = conn.getresponse()
-        data = response.read()
-        conn.close()
-        
-		#termprint('INFO', r.json())
 
 
 if __name__ == '__main__':
