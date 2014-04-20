@@ -1,4 +1,5 @@
 from base import *
+from xml_request import *
 
 class TestXML2Dict(unittest.TestCase):
     def setUp(self):
@@ -24,3 +25,9 @@ class TestXML2Dict(unittest.TestCase):
                 'http://b.com/:z': '3',
             }
         })
+
+        x = xmltodict.parse(xml_request, process_namespaces=True)
+        termprint('INFO', x)
+
+if __name__ == '__main__':
+    unittest.main()
