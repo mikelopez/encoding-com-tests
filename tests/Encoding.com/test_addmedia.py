@@ -2,7 +2,7 @@ import sys
 sys.path.append('../')
 from base import *
 
-class TestEncodingConnection(BaseTest):
+class TestEncodingJob(BaseTest):
     """Test connection to encoding.com API"""
     userid = ""
     userkey = ""
@@ -16,16 +16,18 @@ class TestEncodingConnection(BaseTest):
     def tearDown(self):
         pass
 
-    def test_getmediainfo(self):
-        mediaid = raw_input('Enter media id: ')
+    def test_addmedia(self):
+        """Create an encoding job"""
+        filename = raw_input('Enter media filename: ')
         data = {'userid': getattr(self, 'userid'), 
                 'userkey': getattr(self, 'userkey'),
-                'action': 'GetMediaInfo',
-                'mediaid': mediaid
+                'action': 'AddMedia',
+                'source': [],
+                'notify': '',
+                'instant': 'no'
         }
         d = {'query': data}
         print "%s%s" % (self.url, d)
-        
         headers = {'content-type': 'application/x-www-form-urlencoded'}
         params = urllib.urlencode({'json': simplejson.dumps(d)})
         path = ''
