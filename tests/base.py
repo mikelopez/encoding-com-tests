@@ -7,6 +7,7 @@ from termprint import *
 import simplejson
 import os
 import urllib
+import httplib
 import unittest
 import requests
 
@@ -25,3 +26,6 @@ class BaseTest(unittest.TestCase):
             termprint('INFO', '%s%s' % (spacer, k))
             if type(v) is dict:
                 self.iter8(v, step=(step+2))
+            if type(v) is list:
+                for i in v:
+                    self.iter8(i, step=(step+4))
