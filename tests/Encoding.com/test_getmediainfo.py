@@ -16,10 +16,12 @@ class TestEncodingConnection(BaseTest):
     def tearDown(self):
         pass
 
-    def test_encoding_connection(self):
+    def test_getmediainfo(self):
+        mediaid = raw_input('Enter media id: ')
         data = {'userid': getattr(self, 'userid'), 
                 'userkey': getattr(self, 'userkey'),
-                'action': 'GetMediaList'
+                'action': 'GetMediaInfo',
+                'mediaid': mediaid
         }
         d = {'query': data}
         print "%s%s" % (self.url, d)
@@ -37,10 +39,9 @@ class TestEncodingConnection(BaseTest):
         self.assertTrue(type(j) is dict)
         self.iter8(j)
 
-        for i in j.get('response').get('media'):
-            for k, v in i.items():
-                print termprint('WARNING', '%s = %s' % (k, v))
-            print "------------\n"
+        for i in j.get('response'):
+            #print termprint('WARNING', '%s = %s' % (k, v))
+            print "%s = %s" % (i, j.get('response').get(i))
 
 
 if __name__ == '__main__':
