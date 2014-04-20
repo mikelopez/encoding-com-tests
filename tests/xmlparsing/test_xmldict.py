@@ -3,7 +3,7 @@ sys.path.append('../')
 from base import *
 from xml_request import *
 
-class TestXMLDict(unittest.TestCase):
+class TestXMLDict(BaseTest):
     """Testing the xmldict library"""
     xml_data = xml_request
     def setUp(self):

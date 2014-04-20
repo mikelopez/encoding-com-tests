@@ -3,7 +3,8 @@ sys.path.append('../')
 from base import *
 from xml_request import *
 
-class TestXML2Dict(unittest.TestCase):
+class TestXML2Dict(BaseTest):
+    """Basic test of the xmltodict library"""
     def setUp(self):
         pass
 
