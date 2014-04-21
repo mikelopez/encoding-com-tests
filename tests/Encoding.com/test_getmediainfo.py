@@ -26,16 +26,8 @@ class TestEncodingConnection(BaseTest):
         d = {'query': data}
         print "%s%s" % (self.url, d)
         
-        headers = {'content-type': 'application/x-www-form-urlencoded'}
-        params = urllib.urlencode({'json': simplejson.dumps(d)})
-        path = ''
-        conn = httplib.HTTPConnection(self.url)
-        conn.request('POST', path, params, headers)
-        response = conn.getresponse()
-        response_data = response.read()
-        conn.close()
-        termprint('WARNING', response_data)
-        j = simplejson.loads(response_data)
+        # make api call and get teh json data return
+        j = self.apicall(d)
         self.assertTrue(type(j) is dict)
         self.iter8(j)
 

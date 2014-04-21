@@ -13,7 +13,8 @@ import requests
 
 from settings import ENCODING_API_USER, ENCODING_API_KEY, \
                            VIDLY_API_USER, VIDLY_API_KEY, \
-                           ENCODING_API_URL
+                           ENCODING_API_URL, SAMPLE_VIDEO, SAMPLE_VIDEO_DOWNLOAD, \
+                           AMAZON_SECRET_ACCESS_KEY, AMAZON_ACCESS_KEY
 
 
 
@@ -29,3 +30,19 @@ class BaseTest(unittest.TestCase):
             if type(v) is list:
                 for i in v:
                     self.iter8(i, step=(step+4))
+
+    def apicall(self, data):
+        """Do the api call"""
+        headers = {'content-type': 'application/x-www-form-urlencoded'}
+        params = urllib.urlencode({'json': simplejson.dumps(data)})
+        path = ''
+        # make the connection
+        conn = httplib.HTTPConnection(self.url)
+        conn.request('POST', path, params, headers)
+        # get the response
+        response = conn.getresponse()
+        response_data = response.read()
+        conn.close()
+        # make the json dict response
+        j = simplejson.loads(response_data)
+        return j

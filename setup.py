@@ -1,11 +1,11 @@
 from distutils.core import setup
 
-setup(name='encoding-com-tests',
+setup(name='pyencodingcom',
       version='0.1',
-      description='Description for encoding-com-tests',
-      author='',
+      description='Python encoding.com api',
+      author='Marcos Lopez',
       license='MIT',
-      py_modules=['encoding-com-tests'],
+      py_modules=['pyencodingcom'],
       #packages=['encoding-com-tests'],
       #package_dir={'encoding-com-tests': 'encoding-com-tests'},
       #include_package_data=True,

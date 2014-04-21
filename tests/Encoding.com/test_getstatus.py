@@ -2,8 +2,8 @@ import sys
 sys.path.append('../')
 from base import *
 
-class TestEncodingConnection(BaseTest):
-    """Test connection to encoding.com API"""
+class TestEncodingStatus(BaseTest):
+    """Check the status of a job"""
     userid = ""
     userkey = ""
     url = ""
@@ -16,23 +16,25 @@ class TestEncodingConnection(BaseTest):
     def tearDown(self):
         pass
 
-    def test_encoding_connection(self):
+    def test_get_status(self):
+        mediaid = raw_input('Enter media id: ')
         data = {'userid': getattr(self, 'userid'), 
                 'userkey': getattr(self, 'userkey'),
-                'action': 'GetMediaList'
+                'action': 'GetStatus',
+                'mediaid': mediaid,
+                'extended': 'no'
         }
         d = {'query': data}
-        termprint('ERROR', "%s%s" % (self.url, d))
+        print "%s%s" % (self.url, d)
         
+        # make api call and get teh json data return
         j = self.apicall(d)
         self.assertTrue(type(j) is dict)
         self.iter8(j)
 
-        # print some extra shit
-        for i in j.get('response').get('media'):
-            for k, v in i.items():
-                termprint('WARNING', '%s = %s' % (k, v))
-            print "------------\n"
+        for i in j.get('response'):
+            #print termprint('WARNING', '%s = %s' % (k, v))
+            print "%s = %s" % (i, j.get('response').get(i))
 
 
 if __name__ == '__main__':
